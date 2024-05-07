@@ -10,6 +10,12 @@ sound_menu_1_file = "sound_menu_1.txt"
 sound_menu_2_file = "sound_menu_2.txt"
 sound_menu_3_file = "sound_menu_3.txt"
 
+# Game
+start_file = "start.txt"
+
+
+
+
 # Function to clear the screen
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,7 +27,11 @@ def open_file():
     )
     if filepath:
         with open(filepath, "r", encoding="utf8") as f:
+            clear_screen()
             print(f.read())
+            input("")
+            clear_screen()
+            
 
 # Function to read from a file and return its content
 def read_file(filename):
@@ -44,6 +54,11 @@ sound_menu_temp = read_file(sound_menu_file)
 sound_menu_1 = read_file(sound_menu_1_file)
 sound_menu_2 = read_file(sound_menu_2_file)
 sound_menu_3 = read_file(sound_menu_3_file)
+start = read_file(start_file)
+
+
+# User save file
+save = open("user_data.txt", "w")
 
 while True:
     clear_screen()
@@ -56,6 +71,14 @@ while True:
         save_selection = input("Selection: ")
         if save_selection == '2':
             open_file()
+        elif save_selection == '1':
+            clear_screen()
+            print("".join(start))
+            username = input("Enter a username: ")
+            save = open("user_data.txt", "w")  # makes file if file doesnt already exist
+            save.write("Username: ")
+            save.write(username)  # Writes username to file
+            save.close()  
     elif selection == '2':
         clear_screen()
         print("".join(options_menu))  
@@ -86,6 +109,10 @@ while True:
                 clear_screen()
                 print("".join(sound_menu_3))
                 sound_selection = input("Enter a value between 0-3: ")
+        if options_selection == '2':
+            save.close()
+            os.remove("user_data.txt")
+                
     elif selection == '3':
         clear_screen()
         break

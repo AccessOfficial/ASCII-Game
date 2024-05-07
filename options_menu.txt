@@ -2,7 +2,7 @@ Options Menu
 =---------------------=
 | 1. Sound            |
 |                     |
-| 2. (another option) |
+| 2. Delete Save      |
 |                     |
 | 3. Back             |
 =---------------------=
